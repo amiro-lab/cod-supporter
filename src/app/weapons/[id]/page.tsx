@@ -179,6 +179,8 @@ export default async function WeaponPage(props: PageProps<"/weapons/[id]">) {
       <Callout tone="info" title="인게임 측정 데이터 준비 중">
         부착물별 스탯 변화와 반동 방향은 게임 화면을 직접 캡처해서 측정한 데이터로 채울 예정입니다. 다른 사이트의 추정치는
         가져오지 않습니다.
+        <p className="mt-2">피해량·유효 사거리·ADS·장전 시간·파츠별 증감: 미수집</p>
+        <p className="mt-2"><Link href="/attachments" className="text-accent hover:underline">수집된 추천 빌드의 파츠 사용 사례 보기 →</Link></p>
       </Callout>
     </>
   );

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const LINKS = [
   { href: "/meta/multiplayer", match: "/meta", label: "총기 메타" },
   { href: "/weapons", match: "/weapons", label: "무기" },
+  { href: "/attachments", match: "/attachments", label: "파츠" },
   { href: "/dmz", match: "/dmz", label: "DMZ" },
   { href: "/mw4", match: "/mw4", label: "MW4 정보" },
   { href: "/sources", match: "/sources", label: "출처" },

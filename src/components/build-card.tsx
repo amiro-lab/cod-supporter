@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CopyButton } from "@/components/copy-button";
 import { SourceLinks } from "@/components/source-links";
 import { Badge, formatDateShort } from "@/components/ui";
-import { requireWeapon } from "@/lib/data";
+import { LATEST_BALANCE_PATCH, requireWeapon } from "@/lib/data";
 import { CLASS_LABEL, MODE_LABEL, ROLE_LABEL } from "@/lib/labels";
 import type { Build } from "@/lib/types";
 
@@ -39,6 +39,7 @@ export function BuildCard({ build, showWeapon = true }: { build: Build; showWeap
         <div className="flex flex-wrap gap-1">
           <Badge tone={build.mode === "dmz" ? "warn" : "info"}>{MODE_LABEL[build.mode]}</Badge>
           <Badge>{ROLE_LABEL[build.role]}</Badge>
+          {build.date < LATEST_BALANCE_PATCH && <Badge tone="warn" title={`${LATEST_BALANCE_PATCH} 멀티플레이 밸런스 패치보다 오래된 자료입니다. DMZ 적용 여부는 별도 확인이 필요합니다.`}>패치 전 자료 · 재확인 필요</Badge>}
           {build.lowConfidence && (
             <Badge tone="danger" title="출처의 부착물 표기가 다른 매체와 달라 정확하지 않을 수 있음">
               신뢰도 낮음
@@ -62,6 +63,7 @@ export function BuildCard({ build, showWeapon = true }: { build: Build; showWeap
       </dl>
 
       <p className="text-sm leading-relaxed text-dim">{build.why}</p>
+      <Link href="/attachments" className="text-xs text-accent hover:underline">파츠 도감에서 다른 사용 사례 찾기 →</Link>
 
       <div className="space-y-1.5">
         <ChipList label="퍼크" items={build.perks} />

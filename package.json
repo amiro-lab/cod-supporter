@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sources:check": "node scripts/check-sources.mjs",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "next": "16.4.3",

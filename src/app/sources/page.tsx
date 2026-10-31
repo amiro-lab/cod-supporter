@@ -62,6 +62,19 @@ export default function SourcesPage() {
         </Callout>
       </div>
 
+      <SectionHeading id="collection" title="수집·갱신 현황" sub="2026-10-31 조사 · 현재는 정적 데이터와 수동 검증 방식입니다." />
+      <div className="grid gap-3 md:grid-cols-3">
+        <Callout tone="accent" title="공식 무장·패치 확인">
+          공식 건스미스 안내와 누적 패치노트를 우선 확인합니다. 저장소의 sources:check 명령으로 본문 변경 후보를 감지할 수 있습니다. 자동 게시나 주기 실행은 아직 설정하지 않았습니다.
+        </Callout>
+        <Callout tone="info" title="최근 세팅·파츠 탐색">
+          매체 기사에서 모드·작성일·부착물·공유 코드를 검토합니다. 파츠 도감은 수집된 빌드의 사용 사례를 모으며, 전체 파츠 목록이나 실제 픽률을 뜻하지 않습니다.
+        </Callout>
+        <Callout tone="warn" title="정밀 스펙은 측정 대기">
+          파츠별 피해량·사거리·ADS·장전 시간·반동 수치는 아직 수집하지 않았습니다. 모드·패치·측정 조건·원본 캡처를 확보한 값부터 추가할 계획입니다.
+        </Callout>
+      </div>
+
       <SectionHeading id="excluded" title="메타 데이터를 가져오지 않은 사이트" sub="방문은 자유롭게 — 티어·빌드 데이터만 가져오지 않습니다." />
       <ul className="space-y-2">
         {EXCLUDED.map((e) => (

@@ -19,6 +19,7 @@
 
 # production
 /build
+/.source-check/
 
 # misc
 .DS_Store
