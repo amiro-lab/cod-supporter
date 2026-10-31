@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: #0b0d0c;
+  --color-panel: #131614;
+  --color-panel-2: #1a1e1b;
+  --color-line: #262b27;
+  --color-ink: #e8ebe6;
+  --color-dim: #9aa39b;
+  --color-mute: #6b746c;
+  --color-accent: #c9f24d;
+  --color-accent-ink: #11140c;
+  --color-warn: #f2b84d;
+  --color-danger: #f26b4d;
+  --color-info: #6cc4f2;
+
+  --color-tier-s: #ff6b5a;
+  --color-tier-a: #f2b84d;
+  --color-tier-b: #c9f24d;
+  --color-tier-c: #6cc4f2;
+
+  --font-sans: var(--font-geist-sans), "Pretendard", "Apple SD Gothic Neo",
+    "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  word-break: keep-all;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+/* 섹션 앵커 이동 시 고정 헤더에 가리지 않도록 */
+[id] {
+  scroll-margin-top: 5rem;
 }

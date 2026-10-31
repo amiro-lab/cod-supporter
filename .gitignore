@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 게임 캡처 원본 (용량이 커서 git에서 제외, 가이드 문서만 관리)
+captures/**/*
+!captures/README.md
+!captures/*/
