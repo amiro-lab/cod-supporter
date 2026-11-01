@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FactGrid, InfoList, NamedGrid, OpenQuestions, PatchTimeline } from "@/components/info";
-import { TierBadge, PageHeader, SectionHeading, TocNav } from "@/components/ui";
+import { Callout, TierBadge, PageHeader, SectionHeading, TocNav } from "@/components/ui";
+import { DMZ_COMMUNITY_CHECKED_AT, dmzBlueprintReports, dmzBlueprintOfficialNotes } from "@/data/dmz-community";
 import {
   dmzFacts,
   dmzMap,
@@ -28,6 +29,7 @@ export default function DmzPage() {
     { id: "modes", title: "배치 모드" },
     ...dmzSections.map((s) => ({ id: s.id, title: s.title })),
     { id: "tips", title: "초보 팁" },
+    { id: "blueprints-community", title: "무기 도안 제보" },
     { id: "weapons", title: "추천 무기" },
     { id: "season1", title: "시즌 1" },
     { id: "patches", title: "패치" },
@@ -75,6 +77,16 @@ export default function DmzPage() {
 
       <SectionHeading id="tips" title="초보 팁" sub="여러 가이드의 공통 조언을 정리했습니다." />
       <InfoList items={dmzTips} />
+
+      <SectionHeading id="blueprints-community" title="무기 도안 · 커뮤니티 제보" sub={`${DMZ_COMMUNITY_CHECKED_AT} 원문 확인 · 획득 경험담, 파밍 장소, 구매 팁`} />
+      <div className="mb-3">
+        <Callout tone="warn" title="도안·무기 매뉴얼·제작법을 구분해 읽으세요">
+          커뮤니티 글은 서로 다른 아이템을 같은 말로 부르기도 합니다. 아래 내용은 이용자 제보이며, 확정 드롭·정확한 확률·현재 패치에서의 재현 여부는 확인하지 않았습니다. 각 항목에서 원문을 확인할 수 있습니다.
+        </Callout>
+      </div>
+      <InfoList items={dmzBlueprintReports} />
+      <h3 className="mb-3 mt-6 font-semibold">관련 공식 수정 내역</h3>
+      <InfoList items={dmzBlueprintOfficialNotes} columns={1} />
 
       <SectionHeading
         id="weapons"

@@ -50,7 +50,7 @@ export default function SourcesPage() {
       <SectionHeading id="policy" title="데이터 원칙" />
       <div className="grid gap-3 md:grid-cols-3">
         <Callout tone="accent" title="1. 출처 없는 정보는 싣지 않습니다">
-          공식 발표(callofduty.com)와 게임 매체 기사를 기준으로 합니다. 각 항목 옆의 작은 매체명 링크가 원문입니다.
+          공식 발표(callofduty.com)와 게임 매체 기사를 우선합니다. 커뮤니티 경험담은 미확인 제보로 구분하며, 각 항목 옆의 작은 출처 링크가 원문입니다.
         </Callout>
         <Callout tone="warn" title="2. 확실하지 않으면 표시합니다">
           출시 전·베타 정보는 <Badge tone="warn">출시 전 정보</Badge>, 루머나 출처 간 충돌은{" "}

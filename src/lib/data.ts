@@ -6,7 +6,7 @@ import { CLASS_ORDER } from "./labels";
 import type { GameMode, InfoItem, Weapon, WeaponClass } from "./types";
 
 /** 사이트 데이터 기준일 — 데이터를 갱신하면 함께 바꾼다 */
-export const DATA_UPDATED_AT = "2026-10-31";
+export const DATA_UPDATED_AT = "2026-11-01";
 
 /** 데이터에 반영된 가장 최근 밸런스 패치 */
 export const LATEST_BALANCE_PATCH = "2026-10-28";
