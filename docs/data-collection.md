@@ -42,4 +42,4 @@ npm run sources:check
 5. 실제 반영한 날짜에만 `DATA_UPDATED_AT`을 변경한다. 밸런스 패치를 반영할 때 `LATEST_BALANCE_PATCH`와 각 리스트의 `postPatch`를 함께 재검토한다. 같은 날짜의 기사도 패치 이후 작성 여부는 원문으로 확인한다.
 6. `npm test`, `npm run lint`, `npm run build` 후 무기 상세·파츠 검색·메타 화면을 확인한다.
 
-자동 주기 실행은 설정하지 않았다. 운영 환경이 정해지면 하루 1회 정도 실행하고 오류와 변경 후보를 검토 큐로 전달하는 방식으로 확장할 수 있다.
+공식 페이지 본문 변경 감지는 수동 실행이다. 새로운 DMZ 글의 RSS 수집은 매주 월요일 09:17 KST에 GitHub Actions가 수행하도록 구성했다. 후보 검토 브랜치와 공략 반영 과정은 [주간 수집 운영 가이드](weekly-dmz.md)를 참고한다.

@@ -1,11 +1,12 @@
 import { dmzSources } from "@/data/dmz";
 import { dmzCommunitySources } from "@/data/dmz-community";
+import { dmzGuideSources } from "@/data/dmz-guides";
 import { mw4Sources } from "@/data/mw4";
 import { weaponSources } from "@/data/sources-weapons";
 import type { Source, SourceId } from "./types";
 
 const registry = new Map<SourceId, Source>();
-for (const s of [...mw4Sources, ...dmzSources, ...weaponSources, ...dmzCommunitySources]) {
+for (const s of [...mw4Sources, ...dmzSources, ...weaponSources, ...dmzCommunitySources, ...dmzGuideSources]) {
   if (registry.has(s.id)) throw new Error(`duplicate source id: ${s.id}`);
   registry.set(s.id, s);
 }

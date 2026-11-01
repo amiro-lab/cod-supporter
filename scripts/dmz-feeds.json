@@ -1,0 +1,6 @@
+[
+  { "name": "PC Gamer", "url": "https://www.pcgamer.com/rss/", "host": "pcgamer.com" },
+  { "name": "Windows Central", "url": "https://www.windowscentral.com/feeds.xml", "host": "windowscentral.com" },
+  { "name": "GamesRadar+", "url": "https://www.gamesradar.com/feeds.xml", "host": "gamesradar.com" },
+  { "name": "Gamers Heroes", "url": "https://www.gamersheroes.com/feed/", "host": "gamersheroes.com" }
+]

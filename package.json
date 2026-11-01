@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "sources:check": "node scripts/check-sources.mjs",
+    "dmz:collect": "python3 scripts/collect_dmz.py",
+    "test:collector": "python3 -m unittest discover -s scripts -p 'test_*.py'",
     "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {

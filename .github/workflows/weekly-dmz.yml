@@ -1,0 +1,74 @@
+name: Weekly DMZ guide discovery
+
+on:
+  schedule:
+    # Monday 09:17 Asia/Seoul (UTC+9). GitHub may delay scheduled runs.
+    - cron: '17 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-dmz
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Test collector
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - name: Preserve candidates from the open weekly PR
+        run: |
+          mkdir -p .source-check
+          if git ls-remote --heads origin automation/dmz-weekly | grep -q .; then
+            git fetch origin refs/heads/automation/dmz-weekly:refs/remotes/origin/automation/dmz-weekly
+            git show FETCH_HEAD:research/dmz-candidates.json > .source-check/pending.json
+          fi
+      - name: Collect public feed metadata
+        id: collect
+        continue-on-error: true
+        run: python3 scripts/collect_dmz.py --previous-file .source-check/pending.json
+      # Organization policy disables Actions PR creation. Publish a review branch instead.
+      # This branch is machine-owned; preserve manual review decisions on main.
+      - name: Update discovery branch
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          if ! git diff --quiet -- research/dmz-candidates.json || ! git show-ref --verify --quiet refs/remotes/origin/automation/dmz-weekly; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git checkout -b automation/dmz-weekly
+            git add research/dmz-candidates.json
+            if ! git diff --cached --quiet; then
+              git commit -m 'Collect DMZ guide links for review'
+            fi
+            git push --force-with-lease origin HEAD:refs/heads/automation/dmz-weekly
+          fi
+          echo '## DMZ weekly discovery' >> "$GITHUB_STEP_SUMMARY"
+          echo "Review branch: https://github.com/$REPOSITORY/tree/automation/dmz-weekly/research" >> "$GITHUB_STEP_SUMMARY"
+          echo "Create a PR manually: https://github.com/$REPOSITORY/compare/main...automation/dmz-weekly" >> "$GITHUB_STEP_SUMMARY"
+          echo 'Article content is not automatically published. See the report artifact for feed errors.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload collection report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dmz-discovery-report
+          path: |
+            .source-check/dmz-report.json
+            research/dmz-candidates.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Report partial or total feed failure
+        if: steps.collect.outcome == 'failure'
+        run: |
+          echo 'Some feeds failed. Successful discoveries were retained; inspect the report.'
+          exit 1

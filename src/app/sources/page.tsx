@@ -65,7 +65,7 @@ export default function SourcesPage() {
       <SectionHeading id="collection" title="수집·갱신 현황" sub="2026-10-31 조사 · 현재는 정적 데이터와 수동 검증 방식입니다." />
       <div className="grid gap-3 md:grid-cols-3">
         <Callout tone="accent" title="공식 무장·패치 확인">
-          공식 건스미스 안내와 누적 패치노트를 우선 확인합니다. 저장소의 sources:check 명령으로 본문 변경 후보를 감지할 수 있습니다. 자동 게시나 주기 실행은 아직 설정하지 않았습니다.
+          공식 건스미스 안내와 누적 패치노트를 우선 확인합니다. sources:check 명령은 본문 변경 후보를 감지합니다. 매주 월요일 한국 시간 09:17에 RSS에서 DMZ 관련 새 글 후보를 수집해 검토용 브랜치와 보고서에 저장하도록 구성했습니다. 공략은 원문 검토 후 반영합니다.
         </Callout>
         <Callout tone="info" title="최근 세팅·파츠 탐색">
           매체 기사에서 모드·작성일·부착물·공유 코드를 검토합니다. 파츠 도감은 수집된 빌드의 사용 사례를 모으며, 전체 파츠 목록이나 실제 픽률을 뜻하지 않습니다.

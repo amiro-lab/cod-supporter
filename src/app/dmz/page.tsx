@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FactGrid, InfoList, NamedGrid, OpenQuestions, PatchTimeline } from "@/components/info";
 import { Callout, TierBadge, PageHeader, SectionHeading, TocNav } from "@/components/ui";
 import { DMZ_COMMUNITY_CHECKED_AT, dmzBlueprintReports, dmzBlueprintOfficialNotes } from "@/data/dmz-community";
+import { DMZ_GUIDES_CHECKED_AT, dmzLatestGuides } from "@/data/dmz-guides";
 import {
   dmzFacts,
   dmzMap,
@@ -29,6 +30,7 @@ export default function DmzPage() {
     { id: "modes", title: "배치 모드" },
     ...dmzSections.map((s) => ({ id: s.id, title: s.title })),
     { id: "tips", title: "초보 팁" },
+    { id: "latest-guides", title: "최근 공략" },
     { id: "blueprints-community", title: "무기 도안 제보" },
     { id: "weapons", title: "추천 무기" },
     { id: "season1", title: "시즌 1" },
@@ -77,6 +79,9 @@ export default function DmzPage() {
 
       <SectionHeading id="tips" title="초보 팁" sub="여러 가이드의 공통 조언을 정리했습니다." />
       <InfoList items={dmzTips} />
+
+      <SectionHeading id="latest-guides" title="최근 확인한 DMZ 공략" sub={`${DMZ_GUIDES_CHECKED_AT} 원문 확인 · 게시일과 확인일은 다릅니다. 단일 출처 공략은 미확인으로 표시합니다.`} />
+      <InfoList items={dmzLatestGuides} />
 
       <SectionHeading id="blueprints-community" title="무기 도안 · 커뮤니티 제보" sub={`${DMZ_COMMUNITY_CHECKED_AT} 원문 확인 · 획득 경험담, 파밍 장소, 구매 팁`} />
       <div className="mb-3">
